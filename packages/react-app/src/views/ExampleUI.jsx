@@ -5,6 +5,7 @@ import React, { useState } from "react";
 import { Address, Balance } from "../components";
 
 export default function ExampleUI({
+  message,
   purpose,
   setPurposeEvents,
   address,
@@ -24,8 +25,8 @@ export default function ExampleUI({
         ⚙️ Here is an example UI that displays and sets the purpose in your smart contract:
       */}
       <div style={{ border: "1px solid #cccccc", padding: 16, width: 400, margin: "auto", marginTop: 64 }}>
-        <h2>Example UI:</h2>
-        <h4>purpose: {purpose}</h4>
+        <h1>NFT Billboard:</h1>
+        <h2>Message: <b>{message}</b></h2>
         <Divider />
         <div style={{ margin: 8 }}>
           <Input
@@ -65,7 +66,7 @@ export default function ExampleUI({
         <Address address={address} ensProvider={mainnetProvider} fontSize={16} />
         <Divider />
         ENS Address Example:
-        <Address
+        <Address 
           address="0x34aA3F359A9D614239015126635CE7732c18fDF3" /* this will show as austingriffith.eth */
           ensProvider={mainnetProvider}
           fontSize={16}

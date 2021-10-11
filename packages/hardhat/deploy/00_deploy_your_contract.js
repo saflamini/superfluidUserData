@@ -2,15 +2,45 @@
 
 //const { ethers } = require("hardhat");
 
+//mumbai
+const host = '0xEB796bdb90fFA0f28255275e16936D25d3418603';
+const cfa = '0x49e565Ed1bdc17F3d220f72DF0857C26FA83F873';
+const fDAIx = '0x5D8B4C2554aeB7e86F387B4d6c00Ac33499Ed01f';
+const owner = '0x00471Eaad87b91f49b5614D452bd0444499c1bd9';
+// const acct1 = "0x5966aa11c794893774a382d9a19743B8be6BFFd1";
+// const acct2 = "0x9421FE8eCcAfad76C3A9Ec8f9779fAfA05A836B3";
+
 module.exports = async ({ getNamedAccounts, deployments }) => {
   const { deploy } = deployments;
+    //change this 'deployer' to HD wallet provider and send from a different account
+
+
+    // await hre.network.provider.request({
+    //   method: "hardhat_impersonateAccount",
+    //   params: [acct1],
+    // });
+
+    // await hre.network.provider.request({
+    //   method: "hardhat_impersonateAccount",
+    //   params: [acct2],
+    // });
+
+
   const { deployer } = await getNamedAccounts();
+  console.log(deployer);
+
   await deploy("YourContract", {
     // Learn more about args here: https://www.npmjs.com/package/hardhat-deploy#deploymentsdeploy
     from: deployer,
     //args: [ "Hello", ethers.utils.parseEther("1.5") ],
     log: true,
   });
+
+  await deploy("TradeableCashflow", {
+    from: deployer,
+    args: [owner, 'nifty_rick', 'RICK', host, cfa, fDAIx],
+    log: true,
+  })
 
   /*
     // Getting a previously deployed contract

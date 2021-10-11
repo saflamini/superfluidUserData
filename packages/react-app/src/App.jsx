@@ -49,7 +49,7 @@ const { ethers } = require("ethers");
 */
 
 /// 📡 What chain are your contracts deployed to?
-const targetNetwork = NETWORKS.localhost; // <------- select your target frontend network (localhost, rinkeby, xdai, mainnet)
+const targetNetwork = NETWORKS.mumbai; // <------- select your target frontend network (localhost, rinkeby, xdai, mainnet)
 
 // 😬 Sorry for all the console logging
 const DEBUG = true;
@@ -242,6 +242,8 @@ function App(props) {
   const myMainnetDAIBalance = useContractReader(mainnetContracts, "DAI", "balanceOf", [
     "0x34aA3F359A9D614239015126635CE7732c18fDF3",
   ]);
+
+  const message = useContractReader(readContracts, "TradeableCashflow", "userData")
 
   // keep track of a variable from the contract in the local React state:
   const purpose = useContractReader(readContracts, "YourContract", "purpose");
@@ -507,7 +509,7 @@ function App(props) {
             */}
 
             <Contract
-              name="YourContract"
+              name="TradeableCashflow"
               signer={userSigner}
               provider={localProvider}
               address={address}
@@ -534,6 +536,7 @@ function App(props) {
               tx={tx}
               writeContracts={writeContracts}
               readContracts={readContracts}
+              message={message}
               purpose={purpose}
               setPurposeEvents={setPurposeEvents}
             />

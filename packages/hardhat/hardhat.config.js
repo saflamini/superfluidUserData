@@ -25,7 +25,8 @@ const { isAddress, getAddress, formatUnits, parseUnits } = utils;
 //
 // Select the network you want to deploy to here:
 //
-const defaultNetwork = "localhost";
+//using polytest aka mumbai
+const defaultNetwork = "polytest";
 
 const mainnetGwei = 21;
 
@@ -52,7 +53,18 @@ module.exports = {
   // An `example.env` has been provided in the Hardhat root. Copy it and rename it `.env`
   // Follow the directions, and uncomment the network you wish to deploy to.
 
+  
   networks: {
+
+    hardhat: {
+      forking: {
+        //your rpc url here
+        url: `${process.env.MUMBAI_ALCHEMY_URL}`,
+        blockNumber: 20005290,
+        accounts: [`0x${process.env.MUMBAI_DEPLOYER_PRIV_KEY}`]
+    }
+  },
+
     localhost: {
       url: "http://localhost:8545",
       /*      
@@ -149,10 +161,9 @@ module.exports = {
       },
     },     
     polytest: {
-      url: "https://speedy-nodes-nyc.moralis.io/XXXXXXXXXXXXXXXXXXXXXXX/polygon/mumbai",// <---- YOUR MORALIS ID! (not limited to infura)
+      url: `${process.env.MUMBAI_ALCHEMY_URL}`,// using alchemy instead of moralis. add your own URL in .env
       gasPrice: 1000000000,
-      accounts: {
-        mnemonic: mnemonic(),
+      accounts: [`0x${process.env.MUMBAI_DEPLOYER_PRIV_KEY}`]
       },
     },    
 
@@ -265,11 +276,11 @@ module.exports = {
         mnemonic: mnemonic(),
       },
     },
-  },
+  // },
   solidity: {
     compilers: [
       {
-        version: "0.8.4",
+        version: "0.7.0",
         settings: {
           optimizer: {
             enabled: true,
