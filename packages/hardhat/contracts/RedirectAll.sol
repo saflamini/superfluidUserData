@@ -92,12 +92,6 @@ contract RedirectAll is SuperAppBase {
           inFlowRate = inFlowRate * -1; // Fixes issue when inFlowRate is negative
       }
 
-    console.log("MSG sender: ", msg.sender);
-
-    //   console.log("Net flow rate:", netFlowRate);
-    //   console.log("Outflow Rate:", outFlowRate);
-    //   console.log("Inflow Rate:", inFlowRate);
-
       // @dev If inFlowRate === 0, then delete existing flow.
      if (inFlowRate == int96(0)) {
         // @dev if inFlowRate is zero, delete outflow.
