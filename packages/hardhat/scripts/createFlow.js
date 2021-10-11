@@ -16,7 +16,8 @@ const tradeableCashflowABI = tradeableCashflowJSON.abi;
 
 //temporarily hardcode contract address and sender address
 //need to manually enter contract address and sender address here
-const tradeableCashflowAddress = "0x8FcD014323E1B43067ec973B9833e2d74B173EF1";
+const deployedTradeableCashflow = require("../deployments/polytest/TradeableCashflow.json");
+const tradeableCashflowAddress = deployedTradeableCashflow.address;
 const _sender = "0x9421FE8eCcAfad76C3A9Ec8f9779fAfA05A836B3";
 
 //create a flow

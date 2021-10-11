@@ -15,7 +15,8 @@ const tradeableCashflowJSON = require("../artifacts/contracts/TradeableCashflow.
 const tradeableCashflowABI = tradeableCashflowJSON.abi; 
 
   //temporarily hardcode contract address 
-const tradeableCashflowAddress = "0xF15819d207f910AeaD64447288D6273816F26530";
+const deployedTradeableCashflow = require("../deployments/polytest/TradeableCashflow.json");
+const tradeableCashflowAddress = deployedTradeableCashflow.address;
 
 //delete a flow
 async function main() {

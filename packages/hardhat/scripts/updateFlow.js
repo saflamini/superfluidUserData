@@ -14,15 +14,15 @@ const tradeableCashflowJSON = require("../artifacts/contracts/TradeableCashflow.
 const tradeableCashflowABI = tradeableCashflowJSON.abi; 
 
   //temporarily hardcode contract address and sender address
-const tradeableCashflowAddress = "0xF15819d207f910AeaD64447288D6273816F26530";
+const deployedTradeableCashflow = require("../deployments/polytest/TradeableCashflow.json");
+const tradeableCashflowAddress = deployedTradeableCashflow.address;
 const _sender = "0x9421FE8eCcAfad76C3A9Ec8f9779fAfA05A836B3";
 
 //update a flow
 async function main() {
 
-  //note: alchemy provider does not support mumbai... 
-  //may need to change web3 provider to polygon rpc url
-  const web3 = new Web3(new Web3.providers.HttpProvider(process.env.MUMBAI.ALCHEMY_URL));
+  const web3 = new Web3(new Web3.providers.HttpProvider(process.env.MUMBAI_ALCHEMY_URL));
+
 
   //create contract instances for each of these
   const host = new web3.eth.Contract(hostABI, hostAddress);

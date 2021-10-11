@@ -14,8 +14,9 @@ const tradeableCashflowJSON = require("../artifacts/contracts/TradeableCashflow.
 const tradeableCashflowABI = tradeableCashflowJSON.abi; 
 
   //temporarily hardcode contract address 
-const tradeableCashflowAddress = "0xF15819d207f910AeaD64447288D6273816F26530";
-
+  const deployedTradeableCashflow = require("../deployments/polytest/TradeableCashflow.json");
+  const tradeableCashflowAddress = deployedTradeableCashflow.address;
+  
 //read flowData
 async function main() {
 
@@ -24,7 +25,9 @@ const web3 = new Web3(new Web3.providers.HttpProvider(process.env.MUMBAI_ALCHEMY
   //create contract instances for each of these
   const host = new web3.eth.Contract(hostABI, hostAddress);
   const cfa = new web3.eth.Contract(cfaABI, cfaAddress);
-  const tradeableCashflow = new web3.eth.Contract(tradeableCashflowABI, tradeableCashflowAddress)
+  const tradeableCashflow = new web3.eth.Contract(tradeableCashflowABI, tradeableCashflowAddress);
+  const fDAIx = "0x5D8B4C2554aeB7e86F387B4d6c00Ac33499Ed01f"
+
 
   //get data
   const check = await tradeableCashflow.methods.uData().call();
@@ -37,6 +40,16 @@ const web3 = new Web3(new Web3.providers.HttpProvider(process.env.MUMBAI_ALCHEMY
   console.log(jailed)
   const isJailed = await host.methods.isAppJailed(tradeableCashflowAddress).call();
   console.log(`is jailed: ${isJailed}`);
+
+  const flowInfo = await cfa.methods.getFlow(fDAIx, tradeableCashflowAddress, "0x00471Eaad87b91f49b5614D452bd0444499c1bd9").call();
+  const outFlowRate = Number(flowInfo.flowRate);
+  console.log(`Outflow Rate: ${outFlowRate}`);
+
+  const netFlow = await cfa.methods.getNetFlow(fDAIx, tradeableCashflowAddress).call();
+  console.log(`Net flow: ${netFlow}`);
+
+  const inFlowRate = Number(netFlow) + outFlowRate;
+  console.log(`Inflow rate: ${inFlowRate}`)
 }
 
 // We recommend this pattern to be able to use async/await everywhere

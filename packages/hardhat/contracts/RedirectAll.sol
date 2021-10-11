@@ -2,6 +2,8 @@
 pragma solidity ^0.7.0;
 pragma experimental ABIEncoderV2;
 
+import "hardhat/console.sol";
+
 import {
     ISuperfluid,
     ISuperToken,
@@ -86,23 +88,18 @@ contract RedirectAll is SuperAppBase {
       int96 netFlowRate = _cfa.getNetFlow(_acceptedToken, address(this));
       (,int96 outFlowRate,,) = _cfa.getFlow(_acceptedToken, address(this), _receiver);
       int96 inFlowRate = netFlowRate + outFlowRate;
-      if (inFlowRate < 0 ) inFlowRate = -inFlowRate; // Fixes issue when inFlowRate is negative
+      if (inFlowRate < 0 ) {
+          inFlowRate = inFlowRate * -1; // Fixes issue when inFlowRate is negative
+      }
+
+    console.log("MSG sender: ", msg.sender);
+
+    //   console.log("Net flow rate:", netFlowRate);
+    //   console.log("Outflow Rate:", outFlowRate);
+    //   console.log("Inflow Rate:", inFlowRate);
 
       // @dev If inFlowRate === 0, then delete existing flow.
-      if (outFlowRate != int96(0)){
-        (newCtx, ) = _host.callAgreementWithContext(
-            _cfa,
-            abi.encodeWithSelector(
-                _cfa.updateFlow.selector,
-                _acceptedToken,
-                _receiver,
-                inFlowRate,
-                new bytes(0) // placeholder
-            ),
-            "0x",
-            newCtx
-        );
-      } else if (inFlowRate == int96(0)) {
+     if (inFlowRate == int96(0)) {
         // @dev if inFlowRate is zero, delete outflow.
           (newCtx, ) = _host.callAgreementWithContext(
               _cfa,
@@ -116,7 +113,22 @@ contract RedirectAll is SuperAppBase {
               "0x",
               newCtx
           );
-      } else {
+     }
+      else if (outFlowRate != int96(0)){
+        (newCtx, ) = _host.callAgreementWithContext(
+            _cfa,
+            abi.encodeWithSelector(
+                _cfa.updateFlow.selector,
+                _acceptedToken,
+                _receiver,
+                inFlowRate,
+                new bytes(0) // placeholder
+            ),
+            "0x",
+            newCtx
+        );
+      } 
+    else {
       // @dev If there is no existing outflow, then create new flow to equal inflow
           (newCtx, ) = _host.callAgreementWithContext(
               _cfa,
