@@ -170,6 +170,7 @@ contract RedirectAll is SuperAppBase {
         emit ReceiverChanged(_receiver);
     }
 
+    //public variables which we'll set userData values to
     ISuperfluid.Context public uData;
     string public userData;
 
@@ -192,8 +193,14 @@ contract RedirectAll is SuperAppBase {
         returns (bytes memory newCtx)
     {
         
+        // decode Context - store full context as uData variable for easy visualization purposes
         ISuperfluid.Context memory decompiledContext = _host.decodeCtx(_ctx);
         uData = decompiledContext;
+
+        //set userData variable to decoded value
+        //for now, this value is hardcoded as a string - this will be made clear in flow creation scripts within the tutorial
+        //this string will serve as a message on an 'NFT billboard' when a flow is created with recipient = tradeableCashflow
+        //it will be displayed on a front end for assistance in userData explanation
         userData = abi.decode(decompiledContext.userData, (string));
         
         return _updateOutflow(_ctx);

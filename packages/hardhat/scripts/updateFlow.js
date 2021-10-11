@@ -22,7 +22,7 @@ async function main() {
 
   //note: alchemy provider does not support mumbai... 
   //may need to change web3 provider to polygon rpc url
-  const web3 = new Web3(new Web3.providers.HttpProvider("https://polygon-mumbai.g.alchemy.com/v2/D5mZn4gVHMiQUIMSKn1HDXAoHfjnn48P"));
+  const web3 = new Web3(new Web3.providers.HttpProvider(process.env.MUMBAI.ALCHEMY_URL));
 
   //create contract instances for each of these
   const host = new web3.eth.Contract(hostABI, hostAddress);

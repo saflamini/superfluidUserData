@@ -22,11 +22,8 @@ const _sender = "0x9421FE8eCcAfad76C3A9Ec8f9779fAfA05A836B3";
 //create a flow
 async function main() {
 
-  //note: alchemy provider does not support mumbai... 
-  //may need to change web3 provider to polygon rpc url
-  // const provider = new ethers.providers.AlchemyProvider('rinkeby', `zfWv3pEito9Wi7gDUSLsand11To5VEjN`);
-  // const provider = new ethers.providers.JsonRpcProvider(`${process.env.MUMBAI_ALCHEMY_URL}`);
-  const web3 = new Web3(new Web3.providers.HttpProvider("https://polygon-mumbai.g.alchemy.com/v2/D5mZn4gVHMiQUIMSKn1HDXAoHfjnn48P"));
+
+  const web3 = new Web3(new Web3.providers.HttpProvider(process.env.MUMBAI_ALCHEMY_URL));
 
   //create contract instances for each of these
   const host = new web3.eth.Contract(hostABI, hostAddress);
