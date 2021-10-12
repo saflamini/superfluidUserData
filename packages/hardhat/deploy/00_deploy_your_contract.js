@@ -38,7 +38,7 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
 
   await deploy("TradeableCashflow", {
     from: deployer,
-    args: [owner, 'nifty_rick', 'RICK', host, cfa, fDAIx],
+    args: [owner, 'nifty_billboard', 'NFTBill', host, cfa, fDAIx],
     log: true,
   })
 

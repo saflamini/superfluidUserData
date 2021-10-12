@@ -454,14 +454,14 @@ function App(props) {
       <BrowserRouter>
         <Menu style={{ textAlign: "center" }} selectedKeys={[route]} mode="horizontal">
           <Menu.Item key="/">
-            <Link
+            {/* <Link
               onClick={() => {
                 setRoute("/");
               }}
               to="/"
-            >
-            Contract
-            </Link>
+            > */}
+            {/* Contract */}
+             {/* </Link>
           </Menu.Item>
           <Menu.Item key="/hints">
             <Link
@@ -469,9 +469,9 @@ function App(props) {
                 setRoute("/hints");
               }}
               to="/hints"
-            >
-              Hints
-            </Link>
+            > 
+               Hints */}
+            {/* </Link> */}
           </Menu.Item>
           <Menu.Item key="/nftbillboard">
             <Link
@@ -479,18 +479,18 @@ function App(props) {
                 setRoute("/nftbillboard");
               }}
               to="/nftbillboard"
-            >
+            > 
               NFT Billboard
             </Link>
           </Menu.Item>
-          <Menu.Item key="/mainnetdai">
+          {/* <Menu.Item key="/mainnetdai">
             <Link
               onClick={() => {
                 setRoute("/mainnetdai");
               }}
               to="/mainnetdai"
-            >
-              Mainnet DAI
+            > */}
+              {/* Mainnet DAI
             </Link>
           </Menu.Item>
           <Menu.Item key="/subgraph">
@@ -499,10 +499,10 @@ function App(props) {
                 setRoute("/subgraph");
               }}
               to="/subgraph"
-            >
-              Subgraph
+            > */}
+              {/* Subgraph
             </Link>
-          </Menu.Item>
+          </Menu.Item> */}
         </Menu>
 
         <Switch>
@@ -513,15 +513,15 @@ function App(props) {
                 and give you a form to interact with it locally
             */}
 
-            <Contract
+            {/* <Contract
               name="TradeableCashflow"
               signer={userSigner}
               provider={localProvider}
               address={address}
               blockExplorer={blockExplorer}
               contractConfig={contractConfig}
-            />
-          </Route>
+            /> */}
+          {/* </Route>
           <Route path="/hints">
             <Hints
               address={address}
@@ -529,8 +529,8 @@ function App(props) {
               mainnetProvider={mainnetProvider}
               price={price}
             />
-          </Route>
-          <Route path="/nftbillboard">
+          </Route> */}
+          {/* <Route path="/nftbillboard"> */}
             <NFTBillboard
               address={address}
               userSigner={userSigner}
@@ -546,9 +546,9 @@ function App(props) {
               purpose={purpose}
               setPurposeEvents={setPurposeEvents}
             />
-          </Route>
-          <Route path="/mainnetdai">
-            <Contract
+          {/* </Route> */}
+          {/* <Route path="/mainnetdai"> */}
+            {/* <Contract
               name="DAI"
               customContract={mainnetContracts && mainnetContracts.contracts && mainnetContracts.contracts.DAI}
               signer={userSigner}
@@ -557,7 +557,7 @@ function App(props) {
               blockExplorer="https://etherscan.io/"
               contractConfig={contractConfig}
               chainId={1}
-            />
+            /> */}
             {/*
             <Contract
               name="UNI"
@@ -568,14 +568,14 @@ function App(props) {
               blockExplorer="https://etherscan.io/"
             />
             */}
-          </Route>
-          <Route path="/subgraph">
+          {/* </Route> */}
+          {/* <Route path="/subgraph">
             <Subgraph
               subgraphUri={props.subgraphUri}
               tx={tx}
               writeContracts={writeContracts}
               mainnetProvider={mainnetProvider}
-            />
+            /> */}
           </Route>
         </Switch>
       </BrowserRouter>
