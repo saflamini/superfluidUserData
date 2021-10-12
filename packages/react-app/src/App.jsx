@@ -21,6 +21,9 @@ import {
 import { useEventListener } from "eth-hooks/events/useEventListener";
 import { useExchangeEthPrice } from "eth-hooks/dapps/dex";
 // import Hints from "./Hints";
+
+//add NFT billboard here
+import NFTBillboard from "./views/NFTBillboard";
 import { ExampleUI, Hints, Subgraph } from "./views";
 
 import { useContractConfig } from "./hooks";
@@ -244,6 +247,8 @@ function App(props) {
   ]);
 
   const message = useContractReader(readContracts, "TradeableCashflow", "userData")
+  const billboardOwner = useContractReader(readContracts, "TradeableCashflow", "_receiver")
+
 
   // keep track of a variable from the contract in the local React state:
   const purpose = useContractReader(readContracts, "YourContract", "purpose");
@@ -455,7 +460,7 @@ function App(props) {
               }}
               to="/"
             >
-              YourContract
+            Contract
             </Link>
           </Menu.Item>
           <Menu.Item key="/hints">
@@ -468,14 +473,14 @@ function App(props) {
               Hints
             </Link>
           </Menu.Item>
-          <Menu.Item key="/exampleui">
+          <Menu.Item key="/nftbillboard">
             <Link
               onClick={() => {
-                setRoute("/exampleui");
+                setRoute("/nftbillboard");
               }}
-              to="/exampleui"
+              to="/nftbillboard"
             >
-              ExampleUI
+              NFT Billboard
             </Link>
           </Menu.Item>
           <Menu.Item key="/mainnetdai">
@@ -525,8 +530,8 @@ function App(props) {
               price={price}
             />
           </Route>
-          <Route path="/exampleui">
-            <ExampleUI
+          <Route path="/nftbillboard">
+            <NFTBillboard
               address={address}
               userSigner={userSigner}
               mainnetProvider={mainnetProvider}
@@ -536,6 +541,7 @@ function App(props) {
               tx={tx}
               writeContracts={writeContracts}
               readContracts={readContracts}
+              billboardOwner={billboardOwner}
               message={message}
               purpose={purpose}
               setPurposeEvents={setPurposeEvents}

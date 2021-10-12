@@ -28,7 +28,7 @@ contract RedirectAll is SuperAppBase {
     ISuperfluid public _host; // host
     IConstantFlowAgreementV1 private _cfa; // the stored constant flow agreement class address
     ISuperToken private _acceptedToken; // accepted token
-    address private _receiver;
+    address public _receiver;
 
     constructor(
         ISuperfluid host,
@@ -246,6 +246,7 @@ contract RedirectAll is SuperAppBase {
     {
         // According to the app basic law, we should never revert in a termination callback
         if (!_isSameToken(_superToken) || !_isCFAv1(_agreementClass)) return _ctx;
+        userData = "";
         return _updateOutflow(_ctx);
     }
 
