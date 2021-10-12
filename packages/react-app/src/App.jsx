@@ -24,7 +24,9 @@ import { useExchangeEthPrice } from "eth-hooks/dapps/dex";
 
 //add NFT billboard here
 import NFTBillboard from "./views/NFTBillboard";
-import { ExampleUI, Hints, Subgraph } from "./views";
+
+
+// import { ExampleUI, Hints, Subgraph } from "./views";
 
 import { useContractConfig } from "./hooks";
 import Portis from "@portis/web3";
@@ -241,13 +243,17 @@ function App(props) {
     console.log(`⛓ A new mainnet block is here: ${mainnetProvider._lastBlockNumber}`);
   });
 
+  //two new variables that we'll use
+  const message = useContractReader(readContracts, "TradeableCashflow", "userData")
+  const billboardOwner = useContractReader(readContracts, "TradeableCashflow", "_receiver")
+
   // Then read your DAI balance like:
   const myMainnetDAIBalance = useContractReader(mainnetContracts, "DAI", "balanceOf", [
     "0x34aA3F359A9D614239015126635CE7732c18fDF3",
   ]);
 
-  const message = useContractReader(readContracts, "TradeableCashflow", "userData")
-  const billboardOwner = useContractReader(readContracts, "TradeableCashflow", "_receiver")
+
+  
 
 
   // keep track of a variable from the contract in the local React state:
