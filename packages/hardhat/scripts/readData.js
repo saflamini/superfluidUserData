@@ -30,10 +30,10 @@ const web3 = new Web3(new Web3.providers.HttpProvider(process.env.MUMBAI_ALCHEMY
 
 
   //get data
-  const check = await tradeableCashflow.methods.uData().call();
-  const decoded = web3.eth.abi.decodeParameter('string', check.userData);
-  console.log(check)
-  console.log(decoded)
+  const decodedContext = await tradeableCashflow.methods.uData().call();
+  const decodedUserData = web3.eth.abi.decodeParameter('string', decodedContext.userData);
+  console.log(decodedContext)
+  console.log(decodedUserData)
   
   //get jail info
   const jailed = await host.methods.getAppManifest(tradeableCashflowAddress).call()

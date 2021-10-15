@@ -23,7 +23,7 @@ export default function NFTBillboard({
   return (
     <div>
       {/*
-        ⚙️ Here is an example UI that displays and sets the purpose in your smart contract:
+        ⚙️ Here is a UI that displays and sets the message on your NFT Billboard
       */}
       <div style={{ border: "1px solid #cccccc", padding: 16, width: 400, margin: "auto", marginTop: 64 }}>
         <h1>NFT Billboard</h1>

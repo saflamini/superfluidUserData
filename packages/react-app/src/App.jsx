@@ -460,6 +460,17 @@ function App(props) {
       <BrowserRouter>
         <Menu style={{ textAlign: "center" }} selectedKeys={[route]} mode="horizontal">
           <Menu.Item key="/">
+          </Menu.Item>
+          <Menu.Item key="/nftbillboard">
+            <Link
+              onClick={() => {
+                setRoute("/nftbillboard");
+              }}
+              to="/nftbillboard"
+            > 
+              NFT Billboard
+            </Link>
+          </Menu.Item>
             {/* <Link
               onClick={() => {
                 setRoute("/");
@@ -478,17 +489,7 @@ function App(props) {
             > 
                Hints */}
             {/* </Link> */}
-          </Menu.Item>
-          <Menu.Item key="/nftbillboard">
-            <Link
-              onClick={() => {
-                setRoute("/nftbillboard");
-              }}
-              to="/nftbillboard"
-            > 
-              NFT Billboard
-            </Link>
-          </Menu.Item>
+          
           {/* <Menu.Item key="/mainnetdai">
             <Link
               onClick={() => {
@@ -513,6 +514,21 @@ function App(props) {
 
         <Switch>
           <Route exact path="/">
+          <NFTBillboard
+              address={address}
+              userSigner={userSigner}
+              mainnetProvider={mainnetProvider}
+              localProvider={localProvider}
+              yourLocalBalance={yourLocalBalance}
+              price={price}
+              tx={tx}
+              writeContracts={writeContracts}
+              readContracts={readContracts}
+              billboardOwner={billboardOwner}
+              message={message}
+              purpose={purpose}
+              setPurposeEvents={setPurposeEvents}
+            />
             {/*
                 🎛 this scaffolding is full of commonly used components
                 this <Contract/> component will automatically parse your ABI
@@ -537,21 +553,7 @@ function App(props) {
             />
           </Route> */}
           {/* <Route path="/nftbillboard"> */}
-            <NFTBillboard
-              address={address}
-              userSigner={userSigner}
-              mainnetProvider={mainnetProvider}
-              localProvider={localProvider}
-              yourLocalBalance={yourLocalBalance}
-              price={price}
-              tx={tx}
-              writeContracts={writeContracts}
-              readContracts={readContracts}
-              billboardOwner={billboardOwner}
-              message={message}
-              purpose={purpose}
-              setPurposeEvents={setPurposeEvents}
-            />
+            
           {/* </Route> */}
           {/* <Route path="/mainnetdai"> */}
             {/* <Contract

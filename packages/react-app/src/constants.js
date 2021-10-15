@@ -80,8 +80,6 @@ export const NETWORKS = {
     chainId: 80001,
     price: 1,
     gasPrice: 1000000000,
-    // rpcUrl: "https://rpc-endpoints.superfluid.dev/mumbai",
-    // rpcUrl: process.env.MUMBAI_ALCHEMY_URL,
     rpcUrl: "https://rpc-mumbai.maticvigil.com",
     faucet: "https://faucet.matic.network/",
     blockExplorer: "https://mumbai-explorer.matic.today/",

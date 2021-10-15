@@ -27,25 +27,16 @@ const web3 = new Web3(new Web3.providers.HttpProvider(process.env.MUMBAI_ALCHEMY
   const host = new web3.eth.Contract(hostABI, hostAddress);
   const cfa = new web3.eth.Contract(cfaABI, cfaAddress);
   const tradeableCashflow = new web3.eth.Contract(tradeableCashflowABI, tradeableCashflowAddress);
-//   const check = await tradeableCashflow.methods.uData().call();
-//   const decoded = web3.eth.abi.decodeParameter('string', check.userData);
-//   console.log(decoded)
 
-
-  const _sender = "0x9421FE8eCcAfad76C3A9Ec8f9779fAfA05A836B3"
+  //your address here
+  const _sender = "0x..."
 
   const accts = await web3.eth.getAccounts();
 
   const fDAIx = "0x5D8B4C2554aeB7e86F387B4d6c00Ac33499Ed01f"
-  const userData = web3.eth.abi.encodeParameter('string', 'hey ricky');
-
 
   const nonce = await web3.eth.getTransactionCount(_sender, 'latest'); // nonce starts counting from 0
 
-
-//create flow by calling host directly in this function
-//create flow from sender to tradeable cashflow address
-//pass in userData to the flow as a parameter
   async function cancelFlow() {
       let cfaTx = (await cfa.methods
      .deleteFlow(
