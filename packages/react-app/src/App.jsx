@@ -7,7 +7,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import { BrowserRouter, Link, Route, Switch } from "react-router-dom";
 import Web3Modal from "web3modal";
 import "./App.css";
-import { Account, Contract, Faucet, GasGauge, Header, Ramp, ThemeSwitch } from "./components";
+import { Account, Faucet, GasGauge, Header, Ramp, ThemeSwitch } from "./components";
 import { INFURA_ID, NETWORK, NETWORKS } from "./constants";
 import { Transactor } from "./helpers";
 import {
@@ -155,7 +155,7 @@ const web3Modal = new Web3Modal({
         description: "Connect to Coinbase Wallet (not Coinbase App)",
       },
       package: walletLinkProvider,
-      connector: async (provider, _options) => {
+      connector: async (provider) => {
         await provider.enable();
         return provider;
       },
@@ -166,7 +166,7 @@ const web3Modal = new Web3Modal({
   },
 });
 
-function App(props) {
+function App() {
   const mainnetProvider =
     poktMainnetProvider && poktMainnetProvider._isProvider
       ? poktMainnetProvider

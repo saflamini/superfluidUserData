@@ -36,12 +36,6 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
   //   log: true,
   // });
 
-  await deploy("TradeableCashflow", {
-    from: deployer,
-    args: [owner, 'nifty_billboard', 'NFTBill', host, cfa, fDAIx],
-    log: true,
-  })
-
   /*
     // Getting a previously deployed contract
     const YourContract = await ethers.getContract("YourContract", deployer);
