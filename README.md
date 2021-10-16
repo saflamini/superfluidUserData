@@ -20,8 +20,8 @@ Usage
 
 For initial setup and contract deployment:
 
-```yarn install
-yarn deploy```
+```yarn install```
+```yarn deploy```
 
 To run the react app
 ```yarn start```
